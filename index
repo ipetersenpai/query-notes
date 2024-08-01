@@ -1,0 +1,20 @@
+// Proof of attachment query (College)
+(use this if there is a problem on the location of the attachment of the proof of payment)
+
+UPDATE col_enrollment_proof_payment ep
+JOIN col_enrollment_status es
+ON ep.student_id = es.student_id
+AND ep.term = "242501" AND es.term = "242501" AND es.enrollment_type = "new"  and ep.location != "on_premise_proof_payment_secondary"
+SET ep.location = 'on_bank_transfer_proof_amount'
+WHERE es.payment_method = 'bank_transfer'
+AND DATE(ep.created_date) BETWEEN '2024-07-02' AND '2024-08-01';
+
+
+
+UPDATE col_enrollment_proof_payment ep
+JOIN col_enrollment_status es
+ON ep.student_id = es.student_id
+AND ep.term = "242501" AND es.term = "242501" AND es.enrollment_type = "new"
+SET ep.location = 'on_bank_transfer_proof_amount'
+WHERE es.payment_method = 'bank_transfer'
+AND DATE(ep.created_date) = '2024-07-31';
